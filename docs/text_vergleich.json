@@ -1,0 +1,338 @@
+{
+ "s4": {
+  "geras6": {
+   "systeme": 14,
+   "ausgelassen_schleife_abbruch": 1,
+   "zeichen": 338,
+   "cer_genau_pct": 12.43,
+   "cer_normalisiert_pct": 10.65,
+   "median_system_cer_norm_pct": 7.14,
+   "systeme_textgleich_norm": 3
+  },
+  "alle": {
+   "systeme": 154,
+   "ausgelassen_schleife_abbruch": 8,
+   "zeichen": 3502,
+   "cer_genau_pct": 17.56,
+   "cer_normalisiert_pct": 15.51,
+   "median_system_cer_norm_pct": 11.32,
+   "systeme_textgleich_norm": 35
+  },
+  "kn65": {
+   "systeme": 26,
+   "ausgelassen_schleife_abbruch": 1,
+   "zeichen": 635,
+   "cer_genau_pct": 22.83,
+   "cer_normalisiert_pct": 21.48,
+   "median_system_cer_norm_pct": 20.02,
+   "systeme_textgleich_norm": 3
+  },
+  "wn15484": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 1020,
+   "cer_genau_pct": 14.22,
+   "cer_normalisiert_pct": 12.67,
+   "median_system_cer_norm_pct": 9.45,
+   "systeme_textgleich_norm": 7
+  },
+  "gu17": {
+   "systeme": 35,
+   "ausgelassen_schleife_abbruch": 5,
+   "zeichen": 794,
+   "cer_genau_pct": 19.27,
+   "cer_normalisiert_pct": 16.12,
+   "median_system_cer_norm_pct": 10.0,
+   "systeme_textgleich_norm": 12
+  },
+  "vor254": {
+   "systeme": 39,
+   "ausgelassen_schleife_abbruch": 1,
+   "zeichen": 715,
+   "cer_genau_pct": 18.18,
+   "cer_normalisiert_pct": 15.87,
+   "median_system_cer_norm_pct": 9.52,
+   "systeme_textgleich_norm": 10
+  }
+ },
+ "s4k": {
+  "geras6": {
+   "systeme": 15,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 351,
+   "cer_genau_pct": 6.84,
+   "cer_normalisiert_pct": 5.41,
+   "median_system_cer_norm_pct": 3.45,
+   "systeme_textgleich_norm": 6
+  },
+  "alle": {
+   "systeme": 160,
+   "ausgelassen_schleife_abbruch": 2,
+   "zeichen": 3591,
+   "cer_genau_pct": 14.29,
+   "cer_normalisiert_pct": 12.17,
+   "median_system_cer_norm_pct": 7.41,
+   "systeme_textgleich_norm": 51
+  },
+  "kn65": {
+   "systeme": 27,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 661,
+   "cer_genau_pct": 23.45,
+   "cer_normalisiert_pct": 22.04,
+   "median_system_cer_norm_pct": 18.18,
+   "systeme_textgleich_norm": 4
+  },
+  "wn15484": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 1020,
+   "cer_genau_pct": 17.16,
+   "cer_normalisiert_pct": 15.13,
+   "median_system_cer_norm_pct": 8.71,
+   "systeme_textgleich_norm": 8
+  },
+  "gu17": {
+   "systeme": 39,
+   "ausgelassen_schleife_abbruch": 1,
+   "zeichen": 848,
+   "cer_genau_pct": 9.08,
+   "cer_normalisiert_pct": 6.37,
+   "median_system_cer_norm_pct": 6.25,
+   "systeme_textgleich_norm": 16
+  },
+  "vor254": {
+   "systeme": 39,
+   "ausgelassen_schleife_abbruch": 1,
+   "zeichen": 711,
+   "cer_genau_pct": 11.53,
+   "cer_normalisiert_pct": 9.04,
+   "median_system_cer_norm_pct": 5.56,
+   "systeme_textgleich_norm": 17
+  }
+ },
+ "s4g": {
+  "geras6": {
+   "systeme": 15,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 351,
+   "cer_genau_pct": 5.41,
+   "cer_normalisiert_pct": 3.42,
+   "median_system_cer_norm_pct": 0.0,
+   "systeme_textgleich_norm": 8
+  },
+  "alle": {
+   "systeme": 161,
+   "ausgelassen_schleife_abbruch": 1,
+   "zeichen": 3623,
+   "cer_genau_pct": 11.79,
+   "cer_normalisiert_pct": 9.57,
+   "median_system_cer_norm_pct": 4.76,
+   "systeme_textgleich_norm": 59
+  },
+  "kn65": {
+   "systeme": 27,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 661,
+   "cer_genau_pct": 16.04,
+   "cer_normalisiert_pct": 14.89,
+   "median_system_cer_norm_pct": 16.67,
+   "systeme_textgleich_norm": 4
+  },
+  "wn15484": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 1020,
+   "cer_genau_pct": 15.78,
+   "cer_normalisiert_pct": 13.65,
+   "median_system_cer_norm_pct": 7.69,
+   "systeme_textgleich_norm": 7
+  },
+  "gu17": {
+   "systeme": 39,
+   "ausgelassen_schleife_abbruch": 1,
+   "zeichen": 866,
+   "cer_genau_pct": 9.47,
+   "cer_normalisiert_pct": 6.24,
+   "median_system_cer_norm_pct": 3.45,
+   "systeme_textgleich_norm": 15
+  },
+  "vor254": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 725,
+   "cer_genau_pct": 8.14,
+   "cer_normalisiert_pct": 5.96,
+   "median_system_cer_norm_pct": 0.0,
+   "systeme_textgleich_norm": 25
+  }
+ },
+ "s4g_ep4": {
+  "geras6": {
+   "systeme": 15,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 351,
+   "cer_genau_pct": 6.27,
+   "cer_normalisiert_pct": 4.27,
+   "median_system_cer_norm_pct": 2.7,
+   "systeme_textgleich_norm": 7
+  },
+  "alle": {
+   "systeme": 162,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 3630,
+   "cer_genau_pct": 11.76,
+   "cer_normalisiert_pct": 9.8,
+   "median_system_cer_norm_pct": 5.13,
+   "systeme_textgleich_norm": 56
+  },
+  "kn65": {
+   "systeme": 27,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 661,
+   "cer_genau_pct": 17.1,
+   "cer_normalisiert_pct": 15.65,
+   "median_system_cer_norm_pct": 14.81,
+   "systeme_textgleich_norm": 3
+  },
+  "wn15484": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 1020,
+   "cer_genau_pct": 14.51,
+   "cer_normalisiert_pct": 12.57,
+   "median_system_cer_norm_pct": 7.69,
+   "systeme_textgleich_norm": 7
+  },
+  "gu17": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 873,
+   "cer_genau_pct": 9.74,
+   "cer_normalisiert_pct": 7.56,
+   "median_system_cer_norm_pct": 4.88,
+   "systeme_textgleich_norm": 15
+  },
+  "vor254": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 725,
+   "cer_genau_pct": 8.14,
+   "cer_normalisiert_pct": 5.96,
+   "median_system_cer_norm_pct": 0.0,
+   "systeme_textgleich_norm": 24
+  }
+ },
+ "s4w": {
+  "geras6": {
+   "systeme": 15,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 351,
+   "cer_genau_pct": 5.7,
+   "cer_normalisiert_pct": 3.7,
+   "median_system_cer_norm_pct": 2.7,
+   "systeme_textgleich_norm": 7
+  },
+  "alle": {
+   "systeme": 162,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 3630,
+   "cer_genau_pct": 10.06,
+   "cer_normalisiert_pct": 8.34,
+   "median_system_cer_norm_pct": 4.71,
+   "systeme_textgleich_norm": 62
+  },
+  "kn65": {
+   "systeme": 27,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 661,
+   "cer_genau_pct": 18.31,
+   "cer_normalisiert_pct": 16.72,
+   "median_system_cer_norm_pct": 16.0,
+   "systeme_textgleich_norm": 3
+  },
+  "wn15484": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 1020,
+   "cer_genau_pct": 11.47,
+   "cer_normalisiert_pct": 9.92,
+   "median_system_cer_norm_pct": 7.14,
+   "systeme_textgleich_norm": 8
+  },
+  "gu17": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 873,
+   "cer_genau_pct": 5.38,
+   "cer_normalisiert_pct": 3.55,
+   "median_system_cer_norm_pct": 0.0,
+   "systeme_textgleich_norm": 21
+  },
+  "vor254": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 725,
+   "cer_genau_pct": 8.28,
+   "cer_normalisiert_pct": 6.51,
+   "median_system_cer_norm_pct": 0.0,
+   "systeme_textgleich_norm": 23
+  }
+ },
+ "s4w_ep3": {
+  "geras6": {
+   "systeme": 15,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 351,
+   "cer_genau_pct": 4.84,
+   "cer_normalisiert_pct": 3.13,
+   "median_system_cer_norm_pct": 0.0,
+   "systeme_textgleich_norm": 8
+  },
+  "alle": {
+   "systeme": 162,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 3630,
+   "cer_genau_pct": 11.32,
+   "cer_normalisiert_pct": 9.58,
+   "median_system_cer_norm_pct": 5.0,
+   "systeme_textgleich_norm": 59
+  },
+  "kn65": {
+   "systeme": 27,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 661,
+   "cer_genau_pct": 20.27,
+   "cer_normalisiert_pct": 18.69,
+   "median_system_cer_norm_pct": 14.81,
+   "systeme_textgleich_norm": 3
+  },
+  "wn15484": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 1020,
+   "cer_genau_pct": 13.04,
+   "cer_normalisiert_pct": 11.39,
+   "median_system_cer_norm_pct": 7.69,
+   "systeme_textgleich_norm": 8
+  },
+  "gu17": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 873,
+   "cer_genau_pct": 6.87,
+   "cer_normalisiert_pct": 4.93,
+   "median_system_cer_norm_pct": 2.96,
+   "systeme_textgleich_norm": 19
+  },
+  "vor254": {
+   "systeme": 40,
+   "ausgelassen_schleife_abbruch": 0,
+   "zeichen": 725,
+   "cer_genau_pct": 9.24,
+   "cer_normalisiert_pct": 7.48,
+   "median_system_cer_norm_pct": 0.0,
+   "systeme_textgleich_norm": 21
+  }
+ }
+}

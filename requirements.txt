@@ -1,0 +1,7 @@
+torch>=2.7
+transformers==5.22.1
+pillow
+numpy
+rapidfuzz
+# only for aufbereiten.py
+datasets

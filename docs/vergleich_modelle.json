@@ -1,0 +1,312 @@
+{
+ "LightOn s4": {
+  "geras6": {
+   "tonlage_ser_pct": 18.75,
+   "toene_gt": 1216,
+   "toene_gelesen": 1148,
+   "schluessel_pct": 72.5,
+   "ersetzte_toene_vergleichbar": 69,
+   "lesung_plausibler_pct": 73.9,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": 0.78
+  },
+  "alle": {
+   "tonlage_ser_pct": 24.92,
+   "toene_gt": 4879,
+   "toene_gelesen": 4193,
+   "schluessel_pct": 80.5,
+   "ersetzte_toene_vergleichbar": 313,
+   "lesung_plausibler_pct": 61.7,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": 0.24
+  },
+  "kn65": {
+   "tonlage_ser_pct": 10.79,
+   "toene_gt": 788,
+   "toene_gelesen": 761,
+   "schluessel_pct": 77.5,
+   "ersetzte_toene_vergleichbar": 26,
+   "lesung_plausibler_pct": 42.3,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": -0.28
+  },
+  "wn15484": {
+   "tonlage_ser_pct": 0.72,
+   "toene_gt": 699,
+   "toene_gelesen": 696,
+   "schluessel_pct": 87.5,
+   "ersetzte_toene_vergleichbar": 0,
+   "lesung_plausibler_pct": null,
+   "gleich_pct": null,
+   "mittel_log_differenz": null
+  },
+  "gu17": {
+   "tonlage_ser_pct": 46.36,
+   "toene_gt": 1249,
+   "toene_gelesen": 835,
+   "schluessel_pct": 95.0,
+   "ersetzte_toene_vergleichbar": 135,
+   "lesung_plausibler_pct": 60.7,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": 0.09
+  },
+  "vor254": {
+   "tonlage_ser_pct": 34.41,
+   "toene_gt": 927,
+   "toene_gelesen": 753,
+   "schluessel_pct": 70.0,
+   "ersetzte_toene_vergleichbar": 83,
+   "lesung_plausibler_pct": 59.0,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": 0.21
+  }
+ },
+ "LightOn s4k": {
+  "geras6": {
+   "tonlage_ser_pct": 4.03,
+   "toene_gt": 1216,
+   "toene_gelesen": 1220,
+   "schluessel_pct": 97.5,
+   "ersetzte_toene_vergleichbar": 28,
+   "lesung_plausibler_pct": 46.4,
+   "gleich_pct": 7.1,
+   "mittel_log_differenz": -0.09
+  },
+  "alle": {
+   "tonlage_ser_pct": 9.55,
+   "toene_gt": 4879,
+   "toene_gelesen": 4897,
+   "schluessel_pct": 89.5,
+   "ersetzte_toene_vergleichbar": 115,
+   "lesung_plausibler_pct": 52.2,
+   "gleich_pct": 4.3,
+   "mittel_log_differenz": -0.15
+  },
+  "kn65": {
+   "tonlage_ser_pct": 8.25,
+   "toene_gt": 788,
+   "toene_gelesen": 788,
+   "schluessel_pct": 85.0,
+   "ersetzte_toene_vergleichbar": 12,
+   "lesung_plausibler_pct": 50.0,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": 0.43
+  },
+  "wn15484": {
+   "tonlage_ser_pct": 1.43,
+   "toene_gt": 699,
+   "toene_gelesen": 693,
+   "schluessel_pct": 92.5,
+   "ersetzte_toene_vergleichbar": 2,
+   "lesung_plausibler_pct": 0.0,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": -0.34
+  },
+  "gu17": {
+   "tonlage_ser_pct": 10.01,
+   "toene_gt": 1249,
+   "toene_gelesen": 1180,
+   "schluessel_pct": 100.0,
+   "ersetzte_toene_vergleichbar": 27,
+   "lesung_plausibler_pct": 63.0,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": -1.16
+  },
+  "vor254": {
+   "tonlage_ser_pct": 23.41,
+   "toene_gt": 927,
+   "toene_gelesen": 1016,
+   "schluessel_pct": 72.5,
+   "ersetzte_toene_vergleichbar": 46,
+   "lesung_plausibler_pct": 52.2,
+   "gleich_pct": 6.5,
+   "mittel_log_differenz": 0.26
+  }
+ },
+ "LightOn s4g": {
+  "geras6": {
+   "tonlage_ser_pct": 1.73,
+   "toene_gt": 1216,
+   "toene_gelesen": 1232,
+   "schluessel_pct": 100.0,
+   "ersetzte_toene_vergleichbar": 1,
+   "lesung_plausibler_pct": 100.0,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": 0.11
+  },
+  "alle": {
+   "tonlage_ser_pct": 5.84,
+   "toene_gt": 4879,
+   "toene_gelesen": 4905,
+   "schluessel_pct": 96.5,
+   "ersetzte_toene_vergleichbar": 39,
+   "lesung_plausibler_pct": 53.8,
+   "gleich_pct": 12.8,
+   "mittel_log_differenz": 0.14
+  },
+  "kn65": {
+   "tonlage_ser_pct": 7.36,
+   "toene_gt": 788,
+   "toene_gelesen": 826,
+   "schluessel_pct": 92.5,
+   "ersetzte_toene_vergleichbar": 0,
+   "lesung_plausibler_pct": null,
+   "gleich_pct": null,
+   "mittel_log_differenz": null
+  },
+  "wn15484": {
+   "tonlage_ser_pct": 1.29,
+   "toene_gt": 699,
+   "toene_gelesen": 700,
+   "schluessel_pct": 95.0,
+   "ersetzte_toene_vergleichbar": 0,
+   "lesung_plausibler_pct": null,
+   "gleich_pct": null,
+   "mittel_log_differenz": null
+  },
+  "gu17": {
+   "tonlage_ser_pct": 8.25,
+   "toene_gt": 1249,
+   "toene_gelesen": 1200,
+   "schluessel_pct": 100.0,
+   "ersetzte_toene_vergleichbar": 13,
+   "lesung_plausibler_pct": 61.5,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": -0.45
+  },
+  "vor254": {
+   "tonlage_ser_pct": 10.14,
+   "toene_gt": 927,
+   "toene_gelesen": 947,
+   "schluessel_pct": 95.0,
+   "ersetzte_toene_vergleichbar": 25,
+   "lesung_plausibler_pct": 48.0,
+   "gleich_pct": 20.0,
+   "mittel_log_differenz": 0.45
+  }
+ },
+ "CRNN lang (CTC)": {
+  "geras6": {
+   "tonlage_ser_pct": 4.77,
+   "toene_gt": 1216,
+   "toene_gelesen": 1224,
+   "schluessel_pct": 52.5,
+   "ersetzte_toene_vergleichbar": 39,
+   "lesung_plausibler_pct": 38.5,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": -1.65
+  },
+  "alle": {
+   "tonlage_ser_pct": 16.11,
+   "toene_gt": 4879,
+   "toene_gelesen": 4815,
+   "schluessel_pct": 43.0,
+   "ersetzte_toene_vergleichbar": 417,
+   "lesung_plausibler_pct": 31.2,
+   "gleich_pct": 0.7,
+   "mittel_log_differenz": -1.39
+  },
+  "kn65": {
+   "tonlage_ser_pct": 14.72,
+   "toene_gt": 788,
+   "toene_gelesen": 771,
+   "schluessel_pct": 42.5,
+   "ersetzte_toene_vergleichbar": 47,
+   "lesung_plausibler_pct": 10.6,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": -2.19
+  },
+  "wn15484": {
+   "tonlage_ser_pct": 3.43,
+   "toene_gt": 699,
+   "toene_gelesen": 679,
+   "schluessel_pct": 42.5,
+   "ersetzte_toene_vergleichbar": 2,
+   "lesung_plausibler_pct": 50.0,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": -1.78
+  },
+  "gu17": {
+   "tonlage_ser_pct": 29.06,
+   "toene_gt": 1249,
+   "toene_gelesen": 1208,
+   "schluessel_pct": 32.5,
+   "ersetzte_toene_vergleichbar": 198,
+   "lesung_plausibler_pct": 33.8,
+   "gleich_pct": 1.0,
+   "mittel_log_differenz": -1.07
+  },
+  "vor254": {
+   "tonlage_ser_pct": 24.27,
+   "toene_gt": 927,
+   "toene_gelesen": 933,
+   "schluessel_pct": 45.0,
+   "ersetzte_toene_vergleichbar": 131,
+   "lesung_plausibler_pct": 32.1,
+   "gleich_pct": 0.8,
+   "mittel_log_differenz": -1.5
+  }
+ },
+ "CRNN lang (Attention)": {
+  "geras6": {
+   "tonlage_ser_pct": 2.38,
+   "toene_gt": 1216,
+   "toene_gelesen": 1212,
+   "schluessel_pct": 87.5,
+   "ersetzte_toene_vergleichbar": 9,
+   "lesung_plausibler_pct": 55.6,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": -0.46
+  },
+  "alle": {
+   "tonlage_ser_pct": 13.88,
+   "toene_gt": 4879,
+   "toene_gelesen": 4922,
+   "schluessel_pct": 70.0,
+   "ersetzte_toene_vergleichbar": 284,
+   "lesung_plausibler_pct": 46.1,
+   "gleich_pct": 0.4,
+   "mittel_log_differenz": -0.23
+  },
+  "kn65": {
+   "tonlage_ser_pct": 14.97,
+   "toene_gt": 788,
+   "toene_gelesen": 817,
+   "schluessel_pct": 75.0,
+   "ersetzte_toene_vergleichbar": 36,
+   "lesung_plausibler_pct": 41.7,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": -0.19
+  },
+  "wn15484": {
+   "tonlage_ser_pct": 6.58,
+   "toene_gt": 699,
+   "toene_gelesen": 715,
+   "schluessel_pct": 67.5,
+   "ersetzte_toene_vergleichbar": 0,
+   "lesung_plausibler_pct": null,
+   "gleich_pct": null,
+   "mittel_log_differenz": null
+  },
+  "gu17": {
+   "tonlage_ser_pct": 24.9,
+   "toene_gt": 1249,
+   "toene_gelesen": 1244,
+   "schluessel_pct": 50.0,
+   "ersetzte_toene_vergleichbar": 157,
+   "lesung_plausibler_pct": 46.5,
+   "gleich_pct": 0.6,
+   "mittel_log_differenz": -0.15
+  },
+  "vor254": {
+   "tonlage_ser_pct": 18.66,
+   "toene_gt": 927,
+   "toene_gelesen": 934,
+   "schluessel_pct": 70.0,
+   "ersetzte_toene_vergleichbar": 82,
+   "lesung_plausibler_pct": 46.3,
+   "gleich_pct": 0.0,
+   "mittel_log_differenz": -0.39
+  }
+ }
+}

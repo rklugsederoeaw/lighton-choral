@@ -1,0 +1,96 @@
+{
+ "Einsiedeln": {
+  "gemessen": 85,
+  "verworfen": 15,
+  "linienabstand_median": 59,
+  "linienabstand_p10_p90": [
+   57.0,
+   62.0
+  ],
+  "streifen_haeufigkeit": {
+   "2": 7,
+   "3": 78
+  },
+  "tonschritt_ganz": {
+   "median": 13.8,
+   "p10": 13.0,
+   "anteil_unter_14": 0.6,
+   "bildtoken_median": 385
+  },
+  "tonschritt_stauchen": {
+   "median": 29.5,
+   "p10": 28.5,
+   "anteil_unter_14": 0.0,
+   "bildtoken_median": 715
+  },
+  "tonschritt_streifen": {
+   "median": 29.0,
+   "p10": 28.5,
+   "anteil_unter_14": 0.0,
+   "bildtoken_median": 1800
+  }
+ },
+ "Salzinnes": {
+  "gemessen": 99,
+  "verworfen": 1,
+  "linienabstand_median": 96,
+  "linienabstand_p10_p90": [
+   94.0,
+   98.0
+  ],
+  "streifen_haeufigkeit": {
+   "1": 7,
+   "2": 36,
+   "3": 56
+  },
+  "tonschritt_ganz": {
+   "median": 17.3,
+   "p10": 16.1,
+   "anteil_unter_14": 0.0,
+   "bildtoken_median": 495
+  },
+  "tonschritt_stauchen": {
+   "median": 48.0,
+   "p10": 47.0,
+   "anteil_unter_14": 0.0,
+   "bildtoken_median": 1210
+  },
+  "tonschritt_streifen": {
+   "median": 40.2,
+   "p10": 36.2,
+   "anteil_unter_14": 0.0,
+   "bildtoken_median": 2420
+  }
+ },
+ "Solesmes": {
+  "gemessen": 67,
+  "verworfen": 33,
+  "linienabstand_median": 55,
+  "linienabstand_p10_p90": [
+   44.0,
+   66.0
+  ],
+  "streifen_haeufigkeit": {
+   "2": 48,
+   "3": 19
+  },
+  "tonschritt_ganz": {
+   "median": 16.5,
+   "p10": 11.1,
+   "anteil_unter_14": 0.13,
+   "bildtoken_median": 495
+  },
+  "tonschritt_stauchen": {
+   "median": 27.5,
+   "p10": 22.0,
+   "anteil_unter_14": 0.0,
+   "bildtoken_median": 825
+  },
+  "tonschritt_streifen": {
+   "median": 27.5,
+   "p10": 21.5,
+   "anteil_unter_14": 0.0,
+   "bildtoken_median": 1395
+  }
+ }
+}

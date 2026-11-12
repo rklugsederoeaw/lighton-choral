@@ -1,0 +1,6 @@
+daten/
+models/
+runs/
+__pycache__/
+*.pyc
+.ruff_cache/
