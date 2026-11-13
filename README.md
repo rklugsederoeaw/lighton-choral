@@ -20,11 +20,13 @@ All runs: one H100, 4 epochs, encoder and decoder trained together (learning rat
 | `s4k` | + 2,160 CantusDB staves (3 manuscripts) | 1.79 % | 9.55 % | 89.5 % | 12.17 % |
 | `s4g` | + 8,781 CantusDB staves (10 manuscripts) | 1.86 % | 5.84 % | 96.5 % | 9.57 % |
 | `s4w` | as `s4g`, AMNLT with word boundaries | 1.68 % | 4.67 % | 88.5 % | 8.34 % |
-| `s4t` | as `s4w`, + 569 staves from 4 Gothic Transkribus manuscripts | running | | | |
+| `s4t` | as `s4w`, + 569 staves from 4 Gothic Transkribus manuscripts | 1.80 % | 2.11 % | 92.5 % | 7.90 % |
+
+`s4t` (epoch 4) is the current best model. On a wider check it reads 3,015 staves from 17 further Transkribus manuscripts, none of them in training, with 2.62 % pitch SER; one more source written in lesson tone with long recitation bars is left out, because its ground truth counts a bar as one note while the model writes one note per syllable. The four training sources of `s4t` reach 1.06 % on all their 1,260 staves. Figures per manuscript: `docs/pool_messung.md` (German).
 
 For comparison, the project's CRNN hybrid trained only on the Volpiano ground truth (`hybrid_hybrid_lang`, greedy, without beam search, melody model or concordances) reaches 13.88 % pitch SER on the same 200 held-out staves. `s4k` on AMNLT test (562 staves): 1.77 % pitch SER, 2.67 % lyrics CER.
 
-Caveats: AMNLT splits are not page-disjoint, so AMNLT figures are optimistic. Held-out figures rest on 40 staves per manuscript and vary between epochs by about one point. Lyrics are measured against the corrected Transkribus text, which expands abbreviations and leaves out the letter of decorated initials. Details and all numbers: `docs/bericht_zwischenstand_de.md` (German).
+Caveats: AMNLT splits are not page-disjoint, so AMNLT figures are optimistic. Held-out figures rest on 40 staves per manuscript and vary between epochs by about one point. Until 13 November 2026, `metriken.py` misread a clef on the fifth line (`c5`) as a note; this only affected Transkribus and corpus lists, and the figures above are corrected. Lyrics are measured against the corrected Transkribus text, which expands abbreviations and leaves out the letter of decorated initials. Details and all numbers: `docs/bericht_zwischenstand_de.md` (German).
 
 ## Getting model and data
 

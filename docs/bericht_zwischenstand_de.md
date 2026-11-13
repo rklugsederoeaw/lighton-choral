@@ -214,6 +214,29 @@ Prüfhandschriften je Quelle, Epoche 4 (`s4g` Ep. 3 in Klammern): A-Wn 15484 1,1
 
 Die Wortgrenzen wirken: Die silbenweise Ausgabe ist von 46 auf 9 Systeme zurückgegangen, Text-CER auf AMNLT und auf den Prüfhandschriften sinkt. Die WER auf AMNLT bleibt hoch (17 bis 32 %), weil die Wortgrenzen im Training nur für 80 % der Einsiedeln- und Salzinnes-Zeilen vorliegen. Der Anfangsschlüssel ist auf den Prüfhandschriften schlechter als bei `s4g` (88,5 gegen 96,5 %); bei 200 Systemen sind das 16 Fehler mehr, Ursache ungeklärt. In `auswertung.py` war die WER für Einsiedeln und Salzinnes im Job noch abgeschaltet; die Werte oben sind lokal aus den Lesungen nachgerechnet, das Skript ist korrigiert.
 
+## Lauf `s4t`: plus vier gotische Transkribus-Quellen (12.11.2026)
+
+Job 1937605, wie `s4w`, dazu 569 Trainingssysteme aus A-BRlm P33, P34, A-MB Man.Perg. 2 und A-VOR 259/1 (`daten/korpus_transkribus/`, Silben aus der Bildlesung, Initialen aus dem CantusDB-Lexikon ergänzt, 33 unsichere Zeilen ausgeschlossen). Zusammen 13.273 Trainingssysteme. Training 340 min, mit Lesen 8:51 h. Ausgewählt nach AMNLT-validation: Epoche 4 (`checkpoint-53092`). Die Tonlage ist mit Epoche 3 gleichauf (1,80 gegen 1,78 %); Schlüssel-SER (1,42 gegen 1,75 %) und Text-CER (2,29 gegen 2,33 %) auf AMNLT-validation sprechen für Epoche 4.
+
+| Messung | `s4w` Ep. 4 | `s4t` Ep. 3 | `s4t` Ep. 4 (ausgewählt) |
+| --- | --- | --- | --- |
+| AMNLT-val Tonlagen-SER | 1,68 % | 1,78 % | 1,80 % |
+| AMNLT-val Noten-SER | 5,59 % | 5,80 % | 5,91 % |
+| AMNLT-val Text-CER | 1,91 % | 2,33 % | 2,29 % |
+| AMNLT-val WER (Ein./Salz./Sol.) | 32,0 / 16,9 / 25,6 % | 32,8 / 20,1 / 27,9 % | 31,6 / 19,1 / 27,2 % |
+| Korpus-val Tonlagen-SER | 5,74 % | 5,59 % | 5,67 % |
+| Korpus-val Text-CER | 4,11 % | 4,02 % | 4,10 % |
+| Transkribus-val Tonlagen-SER (89 Systeme) | – | 0,51 % | 0,62 % |
+| Transkribus-val Text-CER | – | 5,14 % | 4,02 % |
+| Prüfhandschriften Tonlagen-SER | 4,67 % | 2,36 % | 2,11 % |
+| Prüfhandschriften fehlerfreie Systeme | – | 153 von 200 | 157 von 200 |
+| Prüfhandschriften Anfangsschlüssel | 88,5 % | 90,5 % | 92,5 % |
+| Text-CER normalisiert (Transkribus-GT) | 8,34 % | 8,37 % | 7,90 % |
+
+Prüfhandschriften je Quelle, Epoche 4 (`s4w` Ep. 4 in Klammern): A-Wn 15484 0,86 (1,14), A-Geras 6 1,89 (1,81), A-KN 65 3,68 (6,22), A-Gu 17 2,24 (8,25), A-VOR 254 1,83 (4,96). Text normalisiert: A-Gu 17 3,21, A-Geras 6 3,13, A-VOR 254 5,40, A-Wn 15484 10,12, A-KN 65 15,96; fehlerfreier Text 77 von 162 (`s4w` 62). Keine Schleifen, keine Abbrüche.
+
+Die 569 gotischen Systeme halbieren die Tonlagen-SER auf den ungesehenen Handschriften (4,67 auf 2,11 %), vor allem bei A-Gu 17 und A-VOR 254, die derselben deutsch-gotischen Notation angehören wie die neuen Trainingsquellen (A-VOR 259 liegt wie A-VOR 254 in der Stiftsbibliothek Vorau). AMNLT verliert leicht (1,68 auf 1,80 %), innerhalb der Schwankung zwischen Epochen. Grenzen: 40 Systeme je Prüfhandschrift. Die Pool-Messung über alle 27 Transkribus-Quellen (6.764 Systeme, Worker `pool`, Bericht `docs/pool_messung.md`) bestätigt das Bild: 17 weitere ungesehene Handschriften 2,62 % Tonlagen-SER (3.015 Systeme), die fünf bisherigen Prüfhandschriften 2,28 % (2.360), die vier Trainingsquellen 1,06 % (1.260). Ausgenommen ist gfs122 (Lektionston mit Rezitationsbalken, die GT zählt einen Balken als einen Ton). Werte mit dem korrigierten Parser für `c5` (13.11.2026).
+
 ## Offen
 
 - Beim Lesen im Jobskript weniger Prozesse parallel oder weniger Systeme (Lauf 3: 12 Prozesse, 15 s je System). Entscheidung über ganze Seiten statt Zeilenausschnitte (Projektleiter, zur späteren Überlegung).

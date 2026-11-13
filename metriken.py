@@ -23,7 +23,7 @@ def noten_token(atome):
     aus, i = [], 0
     while i < len(atome):
         a, n = atome[i], atome[i + 1] if i + 1 < len(atome) else ""
-        if (a in "cf" and n in tuple("1234")) or (a == ";" and n.isdigit()):
+        if (a in "cf" and n in tuple("12345")) or (a == ";" and n.isdigit()):
             aus.append(a + n)
             i += 2
         elif a.lower() in TON and n in tuple("+xy"):
