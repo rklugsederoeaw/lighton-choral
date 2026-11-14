@@ -4,3 +4,4 @@ runs/
 __pycache__/
 *.pyc
 .ruff_cache/
+docs/Aligned_Music_Notation/
