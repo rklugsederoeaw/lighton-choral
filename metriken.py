@@ -1,10 +1,11 @@
-"""Zerlegen des gabc-artigen Ziels und getrennte Messung von Noten und Text.
+"""Zerlegen des gabc-artigen Ziels, getrennte Messung von Noten und Text, AMNLT-Ausrichtung.
 
 Alle Noten-Atome sind Einzelzeichen, deshalb liest zerlege() das Ziel mit und ohne <m> gleich.
 Tonlage: Buchstaben a-m (Großbuchstabe nur andere Notenform), ohne Schlüssel, Custos, Vorzeichen.
 """
 
 import re
+from collections import Counter
 
 from rapidfuzz.distance import Levenshtein as lev
 
@@ -99,11 +100,55 @@ def grenz_treffer(r, h):
     return tp, len(h["grenzen"]) - tp, len(r["grenzen"]) - tp
 
 
+def amnlt_token(s):
+    """Tokenfolge für AMLER und bWER (Fuentes-Martínez u. a. 2026, Abschnitt 6, Formeln 6 bis 8).
+
+    Das Paper spricht nur von »music and lyrics tokens« und legt die Zerlegung nicht fest. Gewählt:
+    jede Silbe (Text außerhalb der Klammern, getrennt an Klammern und Leerraum) ist ein Token,
+    '(' und ')' sind eigene Token (»alignment vocabulary«, Abschnitt 4.2), jedes Notenzeichen in
+    der Klammer ist ein Token mit Präfix <m> (»music-aware gabc«, Abschnitt 5.2), damit der Ton a
+    im Bag-of-Words nicht mit der Silbe a zusammenfällt. Silben statt Buchstaben, weil bWER nach
+    Vidal u. a. 2023 auf Wörtern zählt und sonst jeder Buchstabendreher als Ausrichtungsfehler
+    gälte. Leerzeichen und Zeilenumbrüche trennen nur: Wortgrenzen und Systemumbrüche der
+    Seitenlesungen zählen nicht (das Paper misst Einzelsysteme, Abschnitt 4).
+    Eingabe mit und ohne <m> ergibt dieselbe Folge.
+    """
+    token, silbe, in_noten = [], "", False
+    for z in s.replace("<m>", ""):
+        if z in "()" or z.isspace():
+            if silbe:
+                token.append(silbe)
+                silbe = ""
+            if not z.isspace():
+                token.append(z)
+                in_noten = z == "("
+        elif in_noten:
+            token.append("<m>" + z)
+        else:
+            silbe += z
+    return token + [silbe] if silbe else token
+
+
+def bwer_fehler(ref_token, hyp_token):
+    """Editierabstand ohne Reihenfolge (Zähler von Formel 7): (| |G|-|P| | + Summe |f_G - f_P|) / 2."""
+    fr, fh = Counter(ref_token), Counter(hyp_token)
+    verschieden = sum(abs(fr[w] - fh[w]) for w in fr.keys() | fh.keys())
+    return (abs(len(ref_token) - len(hyp_token)) + verschieden) // 2
+
+
 def messe(paare):
-    """paare: Liste (Referenz, Lesung, Quelle-mit-Wortgrenzen). Fehlerraten als Anteil."""
+    """paare: Liste (Referenz, Lesung, Quelle-mit-Wortgrenzen). Fehlerraten als Anteil.
+
+    amler, bwer: je Beispiel durch die Referenzlänge geteilt, dann gemittelt (Makro). Das Paper
+    nennt die Mittelung nicht; das Skript der Autoren (efm18/AMNLT, compute_amnlt_metrics.py)
+    mittelt nach indirekter Lesung so, am Wortlaut ist das nicht geprüft. amler_mikro, bwer_mikro:
+    Fehlersumme durch Summe der Referenz-Token wie alle übrigen Raten hier. aler jeweils aus den
+    beiden Gesamtwerten, (AMLER - bWER) / AMLER, bei AMLER = 0 gleich 0.0 (im Paper 0/0).
+    Leere Referenz: fehlt im Makro-Mittel (Division durch 0), ihre Fehler zählen im Mikro-Wert.
+    """
     s = dict.fromkeys(
         "ser_f ser_n ton_f ton_n sch_f sch_n sil_f sil_n cer_f cer_n ges_f ges_n "
-        "wer_f wer_n tp fp fn start_ok start_n".split(),
+        "wer_f wer_n tp fp fn start_ok start_n aml_f bw_f aml_n aml_m bw_m aml_anz".split(),
         0,
     )
     for ref, hyp, wortgrenzen in paare:
@@ -128,8 +173,23 @@ def messe(paare):
         if r["schl"]:
             s["start_n"] += 1
             s["start_ok"] += h["schl"][:1] == r["schl"][:1]
+        rt, ht = amnlt_token(ref), amnlt_token(hyp)
+        aml, bw = lev.distance(rt, ht), bwer_fehler(rt, ht)
+        s["aml_f"] += aml
+        s["bw_f"] += bw
+        s["aml_n"] += len(rt)
+        if rt:
+            s["aml_m"] += aml / len(rt)
+            s["bw_m"] += bw / len(rt)
+            s["aml_anz"] += 1
     anteil = lambda a, b: round(s[a] / s[b], 4) if s[b] else None  # noqa: E731
     nenner = 2 * s["tp"] + s["fp"] + s["fn"]
+
+    def aler(f, b):  # Formel 8; die Zahl der Beispiele kürzt sich im Makro-Fall heraus
+        if not s["aml_n"]:
+            return None
+        return round((s[f] - s[b]) / s[f], 4) if s[f] else 0.0
+
     return {
         "noten_ser": anteil("ser_f", "ser_n"),
         "tonlage_ser": anteil("ton_f", "ton_n"),
@@ -142,6 +202,12 @@ def messe(paare):
         "gesamt_cer": anteil("ges_f", "ges_n"),
         "noten_token": s["ser_n"],
         "toene": s["ton_n"],
+        "amler": anteil("aml_m", "aml_anz"),
+        "bwer": anteil("bw_m", "aml_anz"),
+        "aler": aler("aml_m", "bw_m"),
+        "amler_mikro": anteil("aml_f", "aml_n"),
+        "bwer_mikro": anteil("bw_f", "aml_n"),
+        "aler_mikro": aler("aml_f", "bw_f"),
     }
 
 
@@ -162,4 +228,45 @@ if __name__ == "__main__":
     assert m["anfangsschluessel_richtig"] == 1.0
     assert schleife("a(f) " * 7) and not schleife("a(f) b(g) " * 2)
     assert not schleife("a(f)" + " " * 30)
+
+    # AMNLT: AMLER, bWER, AlER
+    def amnlt(*p):
+        m = messe([(r, h, False) for r, h in p])
+        return {k: w for k, w in m.items() if "ler" in k or "bwer" in k}
+
+    zt = amnlt_token(z)
+    assert amnlt_token("(c4) a(g)") == ["(", "<m>c", "<m>4", ")", "a", "(", "<m>g", ")"]
+    assert zt == amnlt_token(z.replace("<m>", "")) and len(zt) == 25  # mit und ohne <m>
+    # Leerraum und Zeilenumbruch trennen nur
+    assert amnlt_token("a(g)\nb(h) c") == amnlt_token("a(g) b(h)c")
+    assert amnlt_token("ab)cd(e") == ["ab", ")", "cd", "(", "<m>e"]  # schiefe Klammern
+    assert bwer_fehler(list("abc"), list("ba")) == 1
+    assert bwer_fehler(list("ab"), list("cde")) == 3
+    assert bwer_fehler(amnlt_token("a(e)"), amnlt_token("e(a)")) == 2  # Ton a, Silbe a
+    gleich = amnlt((z, z))
+    assert set(gleich.values()) == {0.0}, gleich
+    # reiner Inhaltsfehler: ein falscher Ton von 25 Token
+    inhalt = amnlt((z, z.replace("<m>g<m>h", "<m>g<m>i")))
+    assert inhalt["amler"] == inhalt["bwer"] == 0.04 and inhalt["aler"] == 0.0, inhalt
+    assert inhalt == amnlt((z.replace("<m>", ""), z.replace("<m>g<m>h", "gi")))
+    # reiner Ausrichtungsfehler: Ton h an der falschen Silbe, 2 Schritte auf 9 Token
+    schub = amnlt(("a(gh) b(i)", "a(g) b(hi)"))
+    assert schub["amler"] == 0.2222 and schub["bwer"] == 0.0, schub
+    assert schub["aler"] == 1.0, schub
+    assert amnlt(("a(g) b(h)", "b(g) a(h)"))["aler"] == 1.0  # Silben vertauscht
+    leer = amnlt((z, ""))
+    assert leer["amler"] == leer["bwer"] == leer["amler_mikro"] == 1.0, leer
+    assert leer["aler"] == leer["aler_mikro"] == 0.0, leer
+    beide = amnlt(("a(gh) b(i)", "a(g) b(hi)"), (z, z))  # Makro (2/9 + 0)/2, Mikro 2/34
+    assert beide["amler"] == 0.1111 and beide["amler_mikro"] == 0.0588, beide
+    assert beide["aler"] == beide["aler_mikro"] == 1.0
+    ohne_ref = amnlt(("", "a(g)"))  # kein Makro-Wert, Mikro ohne Nenner
+    assert set(ohne_ref.values()) == {None}, ohne_ref
+    # leere Referenz zählt nur im Mikro-Wert: 4 + 1 Fehler auf 4 Token
+    gemischt = amnlt(("", "a(g)"), ("a(g)", "a(h)"))
+    assert gemischt["amler"] == 0.25 and gemischt["amler_mikro"] == 1.25, gemischt
+    for name, w in (("gleich", gleich), ("inhalt", inhalt), ("schub", schub)):
+        print(name, w)
+    print("leer", leer)
+    print("makro/mikro", beide)
     print("ok")
