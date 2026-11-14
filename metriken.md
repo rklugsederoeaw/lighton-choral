@@ -116,15 +116,18 @@ Gemessen mit `messe()` aus [metriken.py](metriken.py) auf dem Testsplit der drei
 | --- | --- | ---:| ---:| ---:| ---:| ---:| ---:| ---:| ---:| ---:|
 | Solesmes | Paper, bestes AMLER (Unfolding CRNN) | – | 18,20 | – | 19,11 | 38,88 | 20,98 | 13,01 | 7,97 | 0,38 |
 | Solesmes | Paper, DAN | – | 21,87 | – | 17,94 | 30,19 | 23,17 | 14,13 | 9,04 | 0,39 |
+| Solesmes | s4 | 86 | 9,63 | 1,87 | 5,54 | 13,98 | 9,92 | 6,64 | 3,28 | 0,33 |
 | Solesmes | s4k | 86 | 11,12 | 2,70 | 6,30 | 16,07 | 11,55 | 8,41 | 3,14 | 0,27 |
 | Solesmes | s4t | 86 | 9,58 | 1,50 | 5,26 | 11,50 | 9,35 | 5,91 | 3,44 | 0,36 |
 | Solesmes | seiten_b | 86 | 8,77 | 1,34 | 5,26 | 11,76 | 8,76 | 5,56 | 3,20 | 0,36 |
 | Einsiedeln | Paper, bestes AMLER (DAN) | – | 7,23 | – | 3,44 | 7,19 | 5,14 | 4,27 | 0,87 | 0,17 |
+| Einsiedeln | s4 | 182 | 1,93 | 1,23 | 2,36 | 4,78 | 2,25 | 1,56 | 0,69 | 0,30 |
 | Einsiedeln | s4k | 182 | 1,84 | 1,24 | 2,34 | 4,36 | 2,15 | 1,50 | 0,65 | 0,30 |
 | Einsiedeln | s4t | 182 | 1,67 | 1,00 | 1,60 | 3,42 | 1,84 | 1,19 | 0,65 | 0,34 |
 | Einsiedeln | seiten_b | 182 | 1,59 | 1,01 | 1,35 | 3,18 | 1,82 | 1,21 | 0,61 | 0,33 |
 | Salzinnes | Paper, bestes AMLER (SMT) | – | 13,73 | – | 3,69 | 7,80 | 7,32 | 6,30 | 1,02 | 0,14 |
 | Salzinnes | Paper, DAN | – | 29,46 | – | 12,34 | 21,08 | 18,73 | 14,05 | 4,68 | 0,25 |
+| Salzinnes | s4 | 294 | 8,12 | 1,63 | 1,56 | 4,06 | 5,31 | 4,47 | 0,84 | 0,15 |
 | Salzinnes | s4k | 294 | 8,04 | 1,77 | 1,14 | 3,31 | 4,42 | 3,66 | 0,76 | 0,17 |
 | Salzinnes | s4t | 294 | 8,20 | 1,32 | 1,19 | 3,47 | 4,54 | 3,86 | 0,68 | 0,14 |
 | Salzinnes | seiten_b | 294 | 8,02 | 1,61 | 1,26 | 3,37 | 4,60 | 3,82 | 0,78 | 0,17 |
@@ -139,4 +142,4 @@ Lesehinweise:
 - **Einsiedeln und Salzinnes nur mit Vorbehalt:** Das Paper zerlegt dort die Pseudo-gabc-Kodierung über ein Vokabular in Mehrzeichen-Token (etwa `a2-s`), wir messen auf unserer gabc-artigen Kodierung mit einem Token je Notenzeichen. Der Nenner ist bei uns größer; ein Teil des Abstands kann aus der Zählweise kommen. Dasselbe gilt für MER.
 - **Vergleichsmodell:** Der Bauart nach entspricht unserem Ansatz die Gruppe Language Modeling des Papers (DAN, SMT, PaliGemma), also Modelle, die das Bild ohne Zeilenentfaltung in eine Folge übersetzen und grundsätzlich auch ganze Seiten lesen können; Unfolding CRNN liest nur einzelne Systeme. Deshalb steht DAN bei jedem Datensatz als eigene Zeile. Gemessen hat das Paper alle Modelle auf Einzelsystemen, Seitenwerte gibt es dort nicht.
 - **Ausgangslage:** Die Modelle des Papers sind je Datensatz trainiert. Unsere Modelle setzen auf dem vortrainierten LightOnOCR auf und sehen zusätzlich die CantusDB-Korpora und Transkribus-GT.
-- **Modelle:** `s4k` ist ein früherer Stand des Systemmodells; `s4t` ist das beste Systemmodell (README des Repos), `seiten_b` und `seiten_c` lesen zusätzlich ganze Seiten.
+- **Modelle:** `s4` kennt nur die AMNLT-Trainingsdaten, also dieselben Daten wie die Verfahren des Papers, und ist deshalb die sauberste Vergleichszeile (Lesejob 1943368, 14.11.2026, Epoche 3, `checkpoint-11769`); ab `s4k` steckt CH-E 611, dieselbe Handschrift wie Einsiedeln, über das CantusDB-Korpus im Training. `s4k` ist ein früherer Stand des Systemmodells; `s4t` ist das beste Systemmodell (README des Repos), `seiten_b` und `seiten_c` lesen zusätzlich ganze Seiten.
