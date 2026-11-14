@@ -141,7 +141,7 @@ def messe(paare):
 
     amler, bwer: je Beispiel durch die Referenzlänge geteilt, dann gemittelt (Makro). Das Paper
     nennt die Mittelung nicht; das Skript der Autoren (efm18/AMNLT, compute_amnlt_metrics.py)
-    mittelt nach indirekter Lesung so, am Wortlaut ist das nicht geprüft. amler_mikro, bwer_mikro:
+    mittelt ebenso (Abgleich in docs/Aligned_Music_Notation/README.md). amler_mikro, bwer_mikro:
     Fehlersumme durch Summe der Referenz-Token wie alle übrigen Raten hier. aler jeweils aus den
     beiden Gesamtwerten, (AMLER - bWER) / AMLER, bei AMLER = 0 gleich 0.0 (im Paper 0/0).
     Leere Referenz: fehlt im Makro-Mittel (Division durch 0), ihre Fehler zählen im Mikro-Wert.
