@@ -120,17 +120,20 @@ Gemessen mit `messe()` aus [metriken.py](metriken.py) auf dem Testsplit der drei
 | Solesmes | s4k | 86 | 11,12 | 2,70 | 6,30 | 16,07 | 11,55 | 8,41 | 3,14 | 0,27 |
 | Solesmes | s4t | 86 | 9,58 | 1,50 | 5,26 | 11,50 | 9,35 | 5,91 | 3,44 | 0,36 |
 | Solesmes | seiten_b | 86 | 8,77 | 1,34 | 5,26 | 11,76 | 8,76 | 5,56 | 3,20 | 0,36 |
+| Solesmes | seiten_c | 86 | 8,82 | 1,52 | 5,70 | 11,82 | 8,89 | 5,90 | 2,99 | 0,33 |
 | Einsiedeln | Paper, bestes AMLER (DAN) | – | 7,23 | – | 3,44 | 7,19 | 5,14 | 4,27 | 0,87 | 0,17 |
 | Einsiedeln | s4 | 182 | 1,93 | 1,23 | 2,36 | 4,78 | 2,25 | 1,56 | 0,69 | 0,30 |
 | Einsiedeln | s4k | 182 | 1,84 | 1,24 | 2,34 | 4,36 | 2,15 | 1,50 | 0,65 | 0,30 |
 | Einsiedeln | s4t | 182 | 1,67 | 1,00 | 1,60 | 3,42 | 1,84 | 1,19 | 0,65 | 0,34 |
 | Einsiedeln | seiten_b | 182 | 1,59 | 1,01 | 1,35 | 3,18 | 1,82 | 1,21 | 0,61 | 0,33 |
+| Einsiedeln | seiten_c | 182 | 1,70 | 1,00 | 1,53 | 3,39 | 2,02 | 1,32 | 0,70 | 0,34 |
 | Salzinnes | Paper, bestes AMLER (SMT) | – | 13,73 | – | 3,69 | 7,80 | 7,32 | 6,30 | 1,02 | 0,14 |
 | Salzinnes | Paper, DAN | – | 29,46 | – | 12,34 | 21,08 | 18,73 | 14,05 | 4,68 | 0,25 |
 | Salzinnes | s4 | 294 | 8,12 | 1,63 | 1,56 | 4,06 | 5,31 | 4,47 | 0,84 | 0,15 |
 | Salzinnes | s4k | 294 | 8,04 | 1,77 | 1,14 | 3,31 | 4,42 | 3,66 | 0,76 | 0,17 |
 | Salzinnes | s4t | 294 | 8,20 | 1,32 | 1,19 | 3,47 | 4,54 | 3,86 | 0,68 | 0,14 |
 | Salzinnes | seiten_b | 294 | 8,02 | 1,61 | 1,26 | 3,37 | 4,60 | 3,82 | 0,78 | 0,17 |
+| Salzinnes | seiten_c | 294 | 8,26 | 1,54 | 1,36 | 3,69 | 4,57 | 3,66 | 0,91 | 0,19 |
 
 `s4t` ist `runs/s4t/checkpoint-53092`, `seiten_b` ist `runs/seiten_b/checkpoint-71296` (Epoche 4), beide als Systemlesung gemessen (MUSICA-Job 1943041). Die Zeile für `seiten_c` folgt nach der Checkpoint-Wahl (Stand 14.11.2026).
 
