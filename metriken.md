@@ -171,7 +171,7 @@ Alle Werte in Prozent. `seiten_d` Epoche 4, Systemlesung:
 | korpus_graz validation | 0,18 | 0,37 | 0,42 | 0,97 | 0,00 |
 | korpus_graz14 validation | 0,00 | 1,37 | 0,46 | 1,82 | 0,00 |
 
-Prüfhandschriften (200 Systeme, nur Noten-GT) und ganze Seiten (25 val- und test-Seiten mit Textziel):
+Prüfhandschriften (200 Systeme, nur Noten-GT) und ganze Seiten. Achtung bei den Seiten: Diese Zeilen sind über alle 25 val- und test-Seiten mit Textziel gerechnet (9 val, 16 test). Die Standardmessung in `docs/seiten_versuch.md` lässt zwei test-Seiten aus, die nach Berichtigungen der Ziele nicht mehr vollständig sind, und kommt für `seiten_d` auf 3,34 % (9 val) und 3,82 % (14 test); für Vergleiche gelten jene Werte, die Zeilen hier zeigen nur die Zerlegung nach Fehlerart:
 
 | Menge | Modell | fehlend | überzählig | falsch | Tonlage-SER | `einheit_weg` |
 | --- | --- | ---:| ---:| ---:| ---:| ---:|
