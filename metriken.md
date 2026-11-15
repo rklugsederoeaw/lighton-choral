@@ -149,3 +149,44 @@ Lesehinweise:
 - **Vergleichsmodell:** Der Bauart nach entspricht unserem Ansatz die Gruppe Language Modeling des Papers (DAN, SMT, PaliGemma), also Modelle, die das Bild ohne Zeilenentfaltung in eine Folge übersetzen und grundsätzlich auch ganze Seiten lesen können; Unfolding CRNN liest nur einzelne Systeme. Deshalb steht DAN bei jedem Datensatz als eigene Zeile. Gemessen hat das Paper alle Modelle auf Einzelsystemen, Seitenwerte gibt es dort nicht.
 - **Ausgangslage:** Die Modelle des Papers sind je Datensatz trainiert. Unsere Modelle setzen auf dem vortrainierten LightOnOCR auf und sehen zusätzlich die CantusDB-Korpora und Transkribus-GT.
 - **Modelle:** `s4` kennt nur die AMNLT-Trainingsdaten, also dieselben Daten wie die Verfahren des Papers, und ist deshalb die sauberste Vergleichszeile (Lesejob 1943368, 14.11.2026, Epoche 3, `checkpoint-11769`); ab `s4k` steckt CH-E 611, dieselbe Handschrift wie Einsiedeln, über das CantusDB-Korpus im Training. `s4k` ist ein früherer Stand des Systemmodells; `s4t` ist das beste Systemmodell (README des Repos), `seiten_b` und `seiten_c` lesen zusätzlich ganze Seiten.
+
+## 8. Ausgelassene Töne und Einheiten (eigene Messgrößen, seit 15.11.2026)
+
+Anlass: Beim Lesen ungesehener Handschriften fehlten Töne an Stellen, an denen auch die Silbe fehlte, meist bei abgekürzten Wörtern (Beobachtung des Projektleiters). Das Modell schreibt Silbe und Notengruppe als Einheit und kann sie als Einheit überspringen. `messe()` in [metriken.py](metriken.py) weist das seither getrennt aus.
+
+| Schlüssel | Bedeutung |
+| --- | --- |
+| `toene_geloescht`, `toene_eingefuegt`, `toene_ersetzt` | Tonlage-SER nach Fehlerart zerlegt: fehlender, überzähliger, falscher Ton, je als Anteil der Referenztöne; die drei ergeben zusammen `tonlage_ser`. Geht auch gegen reine Noten-GT. |
+| `einheit_weg` | Anteil der Einheiten (Silbe mit Tönen), die ganz fehlen: Silbe in der Ausrichtung der Silbenfolgen gestrichen und alle ihre Töne in der Ausrichtung der Tonfolgen gestrichen (`auslassungen()`). Strenge Zählung, also eine untere Grenze: Stehen Nachbartöne falsch, wertet die Ausrichtung einen fehlenden Ton teils als ersetzt. |
+| `toene_weg` | Töne dieser Einheiten als Anteil aller Referenztöne. |
+
+Alle Werte in Prozent. `seiten_d` Epoche 4, Systemlesung:
+
+| Menge | fehlend | überzählig | falsch | Tonlage-SER | `einheit_weg` |
+| --- | ---:| ---:| ---:| ---:| ---:|
+| AMNLT test | 0,40 | 0,35 | 0,50 | 1,25 | 0,03 |
+| AMNLT validation | 0,62 | 0,55 | 0,58 | 1,74 | 0,03 |
+| CantusDB-Korpus validation | 1,48 | 1,51 | 2,73 | 5,72 | 0,48 |
+| Transkribus validation | 0,08 | 0,35 | 0,12 | 0,54 | 0,00 |
+| korpus_graz validation | 0,18 | 0,37 | 0,42 | 0,97 | 0,00 |
+| korpus_graz14 validation | 0,00 | 1,37 | 0,46 | 1,82 | 0,00 |
+
+Prüfhandschriften (200 Systeme, nur Noten-GT) und ganze Seiten (25 val- und test-Seiten mit Textziel):
+
+| Menge | Modell | fehlend | überzählig | falsch | Tonlage-SER | `einheit_weg` |
+| --- | --- | ---:| ---:| ---:| ---:| ---:|
+| Prüfhandschriften | `s4t` | 0,47 | 1,00 | 0,64 | 2,11 | – |
+| Prüfhandschriften | `seiten_b` | 0,35 | 1,13 | 0,27 | 1,74 | – |
+| Prüfhandschriften | `seiten_c` | 0,49 | 0,61 | 0,16 | 1,27 | – |
+| Prüfhandschriften | `seiten_d` | 0,72 | 0,49 | 0,10 | 1,31 | – |
+| Ganze Seiten | `seiten_b` | 2,03 | 0,77 | 1,51 | 4,32 | 0,31 |
+| Ganze Seiten | `seiten_c` | 1,58 | 0,78 | 1,55 | 3,92 | 0,33 |
+| Ganze Seiten | `seiten_d` | 1,29 | 0,80 | 1,44 | 3,54 | 0,10 |
+
+`einheit_weg` auf dem AMNLT-Testsplit (alle drei Datensätze): `s4` 0,04, `s4k` 0,00, `s4t` 0,01, `seiten_b` 0,01, `seiten_c` 0,05, `seiten_d` 0,03.
+
+Lesehinweise:
+
+- **Fehlende Töne sind auf Seiten die häufigste Fehlerart nach den falschen** (1,29 von 3,54 % bei `seiten_d`) und auf den Prüfhandschriften die häufigste (0,72 von 1,31 %). Von `seiten_c` zu `seiten_d` sind sie dort gestiegen (0,49 auf 0,72 %), während falsche und überzählige Töne sanken.
+- **Ganz ausgelassene Einheiten sind auf den Mengen mit GT selten** (höchstens 0,48 %, auf Seiten 7 von 6.669 bei `seiten_d`). Diese Mengen enthalten aber Handschriften, deren Schrift das Modell aus dem Training kennt. Für ungesehene Handschriften mit vielen Abkürzungen fehlt eine Menge mit Text-GT; dort ist die Rate nach dem Augenschein des Projektleiters höher.
+- **Für das nächste Training vorgesehen:** Trainingsbilder, in denen einzelne Wörter der Textzeile abgedeckt sind, mit einem Ziel, das die Noten behält und die Silbe offen lässt.

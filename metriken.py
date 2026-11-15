@@ -136,6 +136,47 @@ def bwer_fehler(ref_token, hyp_token):
     return (abs(len(ref_token) - len(hyp_token)) + verschieden) // 2
 
 
+def einheiten(s):
+    """Je Gruppe (Silbe, Tonfolge); Silbe oder Tonfolge können leer sein (Schlüssel, Striche)."""
+    return [
+        (text.strip(), "".join(x.lower() for x in noten_token(atome) if ist_ton(x)))
+        for text, atome in zerlege(s)[0]
+    ]
+
+
+def auslassungen(ref, hyp):
+    """Einheiten der Referenz (Silbe mit Tönen), die in der Lesung ganz fehlen, und ihre Töne.
+
+    Eine Einheit gilt als ausgelassen, wenn in der Ausrichtung der Silbenfolgen ihre Silbe und in
+    der Ausrichtung der Tonfolgen alle ihre Töne gestrichen sind (Editierabstand, Operation
+    Löschen). Eine falsch gelesene oder mit der Nachbarsilbe verschmolzene Silbe zählt nicht,
+    solange ihre Töne in der Lesung stehen.
+    Rückgabe: (Einheiten mit Silbe und Tönen in der Referenz, davon ausgelassen, verlorene Töne).
+    """
+    a, b = einheiten(ref), einheiten(hyp)
+
+    def gestrichen(x, y):  # Positionen in x, die beim Umschreiben nach y gelöscht werden
+        return {
+            i
+            for op in lev.opcodes(x, y)
+            if op.tag == "delete"
+            for i in range(op.src_start, op.src_end)
+        }
+
+    silbe_weg = gestrichen([t for t, _ in a if t], [t for t, _ in b if t])
+    ton_weg = gestrichen("".join(t for _, t in a), "".join(t for _, t in b))
+    n = weg = toene_weg = si = ti = 0
+    for text, toene in a:
+        if text and toene:
+            n += 1
+            if si in silbe_weg and all(k in ton_weg for k in range(ti, ti + len(toene))):
+                weg += 1
+                toene_weg += len(toene)
+        si += bool(text)
+        ti += len(toene)
+    return n, weg, toene_weg
+
+
 def messe(paare):
     """paare: Liste (Referenz, Lesung, Quelle-mit-Wortgrenzen). Fehlerraten als Anteil.
 
@@ -145,10 +186,15 @@ def messe(paare):
     Fehlersumme durch Summe der Referenz-Token wie alle übrigen Raten hier. aler jeweils aus den
     beiden Gesamtwerten, (AMLER - bWER) / AMLER, bei AMLER = 0 gleich 0.0 (im Paper 0/0).
     Leere Referenz: fehlt im Makro-Mittel (Division durch 0), ihre Fehler zählen im Mikro-Wert.
+    einheit_weg: Anteil der Einheiten (Silbe mit Tönen), die in der Lesung ganz fehlen;
+    toene_weg: ihre Töne als Anteil aller Referenztöne (siehe auslassungen()).
+    toene_geloescht, toene_eingefuegt, toene_ersetzt: tonlage_ser nach Fehlerart zerlegt
+    (fehlender, überzähliger, falscher Ton); die drei Anteile ergeben zusammen tonlage_ser.
     """
     s = dict.fromkeys(
         "ser_f ser_n ton_f ton_n sch_f sch_n sil_f sil_n cer_f cer_n ges_f ges_n "
-        "wer_f wer_n tp fp fn start_ok start_n aml_f bw_f aml_n aml_m bw_m aml_anz".split(),
+        "wer_f wer_n tp fp fn start_ok start_n aml_f bw_f aml_n aml_m bw_m aml_anz "
+        "ein_n ein_weg ein_ton ton_del ton_ins ton_sub".split(),
         0,
     )
     for ref, hyp, wortgrenzen in paare:
@@ -173,6 +219,12 @@ def messe(paare):
         if r["schl"]:
             s["start_n"] += 1
             s["start_ok"] += h["schl"][:1] == r["schl"][:1]
+        for op in lev.editops(r["toene"], h["toene"]):  # Tonlagen-Fehler nach Art
+            s[{"delete": "ton_del", "insert": "ton_ins", "replace": "ton_sub"}[op.tag]] += 1
+        ein_n, ein_weg, ein_ton = auslassungen(ref, hyp)
+        s["ein_n"] += ein_n
+        s["ein_weg"] += ein_weg
+        s["ein_ton"] += ein_ton
         rt, ht = amnlt_token(ref), amnlt_token(hyp)
         aml, bw = lev.distance(rt, ht), bwer_fehler(rt, ht)
         s["aml_f"] += aml
@@ -208,6 +260,12 @@ def messe(paare):
         "amler_mikro": anteil("aml_f", "aml_n"),
         "bwer_mikro": anteil("bw_f", "aml_n"),
         "aler_mikro": aler("aml_f", "bw_f"),
+        "einheiten": s["ein_n"],
+        "einheit_weg": anteil("ein_weg", "ein_n"),
+        "toene_weg": anteil("ein_ton", "ton_n"),
+        "toene_geloescht": anteil("ton_del", "ton_n"),
+        "toene_eingefuegt": anteil("ton_ins", "ton_n"),
+        "toene_ersetzt": anteil("ton_sub", "ton_n"),
     }
 
 
@@ -221,6 +279,29 @@ if __name__ == "__main__":
     assert sicht(z.replace("<m>", ""))["token"] == v["token"]  # mit und ohne <m> gleich
     assert sicht("(<m>;<m>6) a(<m>G)")["token"] == [";6", "G"]
     assert sicht("(<m>;<m>6) a(<m>G)")["toene"] == ["g"]
+    # ausgelassene Einheiten: Silbe und Töne fehlen gemeinsam
+    q = "(<m>c<m>4) a(<m>g) b(<m>h<m>i) c(<m>j)"
+    assert auslassungen(q, q) == (3, 0, 0)
+    assert auslassungen(q, "(c4) a(g) c(j)") == (3, 1, 2)  # Einheit b fehlt ganz
+    assert auslassungen(q, "(c4) a(g) x(hi) c(j)") == (3, 0, 0)  # Silbe falsch, Töne da
+    assert auslassungen(q, "(c4) a(g) (hi) c(j)") == (3, 0, 0)  # Silbe leer, Töne da
+    assert auslassungen(q, "(c4) a(ghi) c(j)") == (
+        3,
+        0,
+        0,
+    )  # Töne hängen am Nachbarn davor
+    assert auslassungen(q, "(c4) a(g) c(hij)") == (
+        3,
+        0,
+        0,
+    )  # Töne hängen am Nachbarn danach
+    assert auslassungen(q, "") == (3, 3, 4)
+    ma = messe([(q, "(c4) a(g) c(j)", False)])
+    assert ma["einheiten"] == 3 and ma["einheit_weg"] == 0.3333 and ma["toene_weg"] == 0.5, ma
+    assert ma["toene_geloescht"] == 0.5 and ma["toene_eingefuegt"] == ma["toene_ersetzt"] == 0.0
+    mb = messe([(q, "(c4) a(g) b(hk) c(j) d(j)", False)])  # ein falscher, ein überzähliger Ton
+    assert (mb["toene_geloescht"], mb["toene_eingefuegt"], mb["toene_ersetzt"]) == (0.0, 0.25, 0.25)
+    assert mb["tonlage_ser"] == 0.5 and mb["einheit_weg"] == 0.0, mb
     assert messe([(z, z, True)])["noten_ser"] == 0.0
     m = messe([(z, z.replace("<m>g<m>h", "<m>g<m>i"), False)])
     assert m["tonlage_ser"] == 0.25 and m["text_wer_nur_mit_wortgrenzen"] is None, m
