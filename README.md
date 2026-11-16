@@ -198,4 +198,4 @@ These scripts document how the training data were built. The tools that built th
 
 ## Licence
 
-Code: to be decided by the project lead. Base model LightOnOCR-3-1B: Apache 2.0.
+Code: Apache License 2.0, see `LICENSE`. Base model LightOnOCR-3-1B: Apache 2.0. Fine-tuned weights, if released: CC BY-NC 4.0, because the training data include the AMNLT datasets (CC BY-NC 4.0). The ground truth is not public; its licences are not yet settled.
