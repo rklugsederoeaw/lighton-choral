@@ -47,7 +47,8 @@ D = AUS / os.environ.get(
 )  # Probeläufe in einen anderen Ordner unter daten/seiten
 TEXT_GT = HIER / "daten/text_gt"
 SILBER = Path(os.environ.get("SILBER", HIER / "daten/korpus_silber/train.jsonl"))
-CHORBUCH = Path("/home/rklug/projects_2026/Transkribus_Chorbuch_Text-GT/output")
+# Transkribus-Export der Chorbücher (PAGE-XML je Band unter <Band>/page_xml)
+CHORBUCH = Path(os.environ.get("CHORBUCH", HIER / "daten/chorbuch_text_gt"))
 C_LISTEN = ("gabc_c", "transkribus_c", "graz_c", "mehrsystem_c")
 DRUCK_MAX = 1500
 # w3:p1R 14.11. (nach dem Signal zu seiten_c): ganze Seiten und Hälften dreifach in der Epochenliste (alte und
